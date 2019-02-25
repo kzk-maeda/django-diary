@@ -14,12 +14,19 @@ class Day(models.Model):
 import uuid
 from pynamodb.models import Model
 from pynamodb.attributes import (
-    UnicodeAttribute, NumberAttribute, UnicodeSetAttribute, UTCDateTimeAttribute
+    UnicodeAttribute, UTCDateTimeAttribute
 )
 from django.utils import timezone
 
 
 class Day(Model):
+    class Meta:
+        table_name = "Day"
+        host = "http://localhost:8000"
+        region = 'ap-northeast-1'
+        write_capacity_units = 1
+        read_capacity_units = 1
+
     id = UnicodeAttribute(hash_key=True, default=str(uuid.uuid4()))
     title = UnicodeAttribute(range_key=True)
     text = UnicodeAttribute()

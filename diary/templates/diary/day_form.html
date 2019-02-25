@@ -5,16 +5,18 @@
 <form action="" method="post">
   <table class="table">
     <tr>
-      <th>{{ form.title.label }}</th>
-      <td>{{ form.title }}</td>
+      <th>タイトル</th>
+      <td><input type="text" name="title" maxlength="200" required id="id_title"></td>
     </tr>
     <tr>
-      <th>{{ form.text.label }}</th>
-      <td>{{ form.text }}</td>
+      <th>本文</th>
+      <td>
+        <textarea name="text" cols="40" rows="10" required id="id_text"></textarea>
+      </td>
     </tr>
     <tr>
-      <th>{{ form.date.label }}</th>
-      <td>{{ form.date }}</td>
+      <th>日付</th>
+      <td><input type="text" name="date" id="id_date"></td>
     </tr>
   </table>
   <button type="submit" class="btn btn-primary">送信</button>

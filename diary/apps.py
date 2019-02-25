@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from .models import Day
 
 
 class DiaryConfig(AppConfig):
@@ -7,4 +8,4 @@ class DiaryConfig(AppConfig):
 # Create DynamoDB Table
 
 if not Day.exists():
-    Day.create_table(read_capacity_units=1, write_capacity_units=1, wait=True)
+    Day.create_table(wait=True)
