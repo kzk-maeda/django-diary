@@ -16,7 +16,7 @@
   <tbody>
     {% for day in day_list %}
     <tr>
-      <td><a href="#">{{ day.title }}</a></td>
+      <td><a href="{% url 'diary:detail' day.id %}">{{ day.title }}</a></td>
       <td>{{ day.date }}</td>
       {% if user.is_superuser %}
       <td><a href="#" target='_blank'>更新</a></td>

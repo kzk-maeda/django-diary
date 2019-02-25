@@ -15,7 +15,7 @@ class Day(Model):
         read_capacity_units = 1
 
     id = UnicodeAttribute(hash_key=True, default=str(uuid.uuid4()))
-    title = UnicodeAttribute(range_key=True)
+    title = UnicodeAttribute()
     text = UnicodeAttribute()
     created_at = UTCDateTimeAttribute(default=timezone.now())
 

@@ -30,7 +30,9 @@ def add(request):
 
 
 def detail(request, pk):
-    day = get_object_or_404(Day, pk=pk)
+    get_item_key = {"id": {"S": pk}}
+    day = Day.get(str(pk))
+    print(day)
     context = {
         'day': day
     }

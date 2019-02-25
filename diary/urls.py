@@ -5,5 +5,5 @@ app_name = 'diary'
 urlpatterns = [
     path('', views.index, name='index'),
     path('add/', views.add, name='add'),
-    path('detail/', views.detail, name='detail'),
+    path('detail/<uuid:pk>/', views.detail, name='detail'),
 ]
