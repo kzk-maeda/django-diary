@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.http import QueryDict
-# from .forms import DayCreateForm
 from .models import Day
 import uuid
 
@@ -29,8 +28,20 @@ def add(request):
     return render(request, 'diary/day_form.html')
 
 
+def delete(request, pk):
+    day = Day.get(str(pk))
+
+    if request.method == 'POST':
+        day.delete()
+        return redirect('diary:index')
+
+    context = {
+        'day': day
+    }
+    return render(request, 'diary/day_confirm_delete.html', context)
+
+
 def detail(request, pk):
-    get_item_key = {"id": {"S": pk}}
     day = Day.get(str(pk))
     print(day)
     context = {

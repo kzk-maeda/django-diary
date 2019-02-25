@@ -20,7 +20,7 @@
       <td>{{ day.date }}</td>
       {% if user.is_superuser %}
       <td><a href="#" target='_blank'>更新</a></td>
-      <td><a href="#" target='_blank'>削除</a></td>
+      <td><a href="{% url 'diary:delete' day.id %}" target='_blank'>削除</a></td>
       {% endif %}
     </tr>
     {% endfor %}
