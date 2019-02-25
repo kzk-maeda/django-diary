@@ -18,6 +18,7 @@ class Day(Model):
     title = UnicodeAttribute()
     text = UnicodeAttribute()
     created_at = UTCDateTimeAttribute(default=timezone.now())
+    updated_at = UTCDateTimeAttribute(default=timezone.now())
 
     def __str__(self):
         return self.title

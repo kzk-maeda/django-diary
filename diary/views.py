@@ -20,7 +20,8 @@ def add(request):
             str(uuid.uuid4()),
             title=response_dict['title'],
             text=response_dict['text'],
-            created_at=timezone.now()
+            created_at=timezone.now(),
+            updated_at=timezone.now()
         )
         save_data.save()
         return redirect('diary:index')
@@ -39,6 +40,27 @@ def delete(request, pk):
         'day': day
     }
     return render(request, 'diary/day_confirm_delete.html', context)
+
+
+def update(request, pk):
+    day = Day.get(str(pk))
+    if request.method == 'POST':
+        response_dict = QueryDict(request.body)
+        save_data = Day(
+            str(pk),
+            title=response_dict['title'],
+            text=response_dict['text'],
+            created_at=timezone.now(),
+            updated_at=timezone.now()
+        )
+        save_data.update_item()
+        return redirect('diary:index')
+
+    context = {
+        'day': day
+    }
+    return render(request, 'diary/day_form.html', context)
+
 
 
 def detail(request, pk):
