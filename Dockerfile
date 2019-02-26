@@ -10,7 +10,7 @@ RUN apt-get -y update \
     && mkdir /root/.aws \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    && pip install awscli --upgrade --user
+    && pip install awscli --ignore-installed six
 
 ENV LANG en_US.utf8
 ENV ACCESS_KEY dummy
@@ -25,4 +25,4 @@ ADD ./docker/requirements.txt /code
 RUN pip install -r requirements.txt
 ADD application /code/application
 
-CMD /usr/bin/python3 /code/application/manage.py runserver 8080
+# CMD /usr/bin/python3 /code/application/manage.py runserver 8080

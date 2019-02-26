@@ -1,5 +1,10 @@
 version: '2'
 services:
+# DynamoDB
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - 8000:8000
 # Web
   django:
     build: .
@@ -7,10 +12,4 @@ services:
       - 8080:8080
     depends_on:
       - dynamodb
-    command: /usr/bin/python3 /code/application/manage.py runserver 8080
-
-  # DynamoDB
-  dynamodb:
-    image: amazon/dynamodb-local
-    ports:
-      - 8000:8000
+    command: ["/usr/bin/python3", "/code/application/manage.py", "runserver", "8080"]
