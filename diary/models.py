@@ -1,9 +1,15 @@
 import uuid
+import logging
 from pynamodb.models import Model
 from pynamodb.attributes import (
     UnicodeAttribute, UTCDateTimeAttribute
 )
 from django.utils import timezone
+
+logging.basicConfig()
+log = logging.getLogger("pynamodb")
+log.setLevel(logging.DEBUG)
+log.propagate = True
 
 
 class Day(Model):
