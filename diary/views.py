@@ -62,7 +62,6 @@ def update(request, pk):
     return render(request, 'diary/day_form.html', context)
 
 
-
 def detail(request, pk):
     day = Day.get(str(pk))
     print(day)
