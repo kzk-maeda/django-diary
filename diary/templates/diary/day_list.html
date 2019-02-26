@@ -1,7 +1,7 @@
 {% extends 'diary/base.html' %}
 
 {% block content %}
-<h1>日記一覧</h1>
+<h1 class="mb-4">日記一覧</h1>
 <table class="table">
   <thred>
     <tr>
@@ -19,8 +19,8 @@
       <td><a href="{% url 'diary:detail' day.id %}">{{ day.title }}</a></td>
       <td>{{ day.date }}</td>
       {% if user.is_superuser %}
-      <td><a href="#" target='_blank'>更新</a></td>
-      <td><a href="{% url 'diary:delete' day.id %}" target='_blank'>削除</a></td>
+      <td><a href="{% url 'diary:update' day.id %}">更新</a></td>
+      <td><a href="{% url 'diary:delete' day.id %}">削除</a></td>
       {% endif %}
     </tr>
     {% endfor %}

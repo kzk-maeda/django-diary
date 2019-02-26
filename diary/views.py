@@ -6,6 +6,9 @@ import uuid
 
 
 def index(request):
+    """
+    Index
+    """
     day_list = Day.scan()
     context = {
         'day_list': day_list
@@ -14,6 +17,9 @@ def index(request):
 
 
 def add(request):
+    """
+    Itemの追加
+    """
     if request.method == 'POST':
         response_dict = QueryDict(request.body)
         save_data = Day(
@@ -29,7 +35,30 @@ def add(request):
     return render(request, 'diary/day_form.html')
 
 
+def update(request, pk):
+    """
+    Itemの更新
+    """
+    day = Day.get(str(pk))
+    if request.method == 'POST':
+        response_dict = QueryDict(request.body)
+        day.update(actions=[
+            Day.title.set(response_dict['title']),
+            Day.text.set(response_dict['text']),
+            Day.updated_at.set(timezone.now())
+        ])
+        return redirect('diary:index')
+
+    context = {
+        'day': day
+    }
+    return render(request, 'diary/day_form.html', context)
+
+
 def delete(request, pk):
+    """
+    Itemの削除
+    """
     day = Day.get(str(pk))
 
     if request.method == 'POST':
@@ -42,27 +71,10 @@ def delete(request, pk):
     return render(request, 'diary/day_confirm_delete.html', context)
 
 
-def update(request, pk):
-    day = Day.get(str(pk))
-    if request.method == 'POST':
-        response_dict = QueryDict(request.body)
-        save_data = Day(
-            str(pk),
-            title=response_dict['title'],
-            text=response_dict['text'],
-            created_at=timezone.now(),
-            updated_at=timezone.now()
-        )
-        save_data.update_item()
-        return redirect('diary:index')
-
-    context = {
-        'day': day
-    }
-    return render(request, 'diary/day_form.html', context)
-
-
 def detail(request, pk):
+    """
+    Itemの詳細
+    """
     day = Day.get(str(pk))
     print(day)
     context = {

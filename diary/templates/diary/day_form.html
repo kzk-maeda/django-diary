@@ -5,7 +5,7 @@
   <table class="table">
     <tr>
       <th>タイトル</th>
-      <td><input type="text" name="title" maxlength="200" required id="id_title" placeholder="{{ day.title }}"></td>
+      <td><input type="text" name="title" maxlength="200" required id="id_title" value="{{ day.title }}"></td>
     </tr>
     <tr>
       <th>本文</th>
@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <th>日付</th>
-      <td><input type="text" name="date" id="id_date" placeholder="{{ day.created_at }}"></td>
+      <td><input type="text" name="date" id="id_date" value="{{ day.created_at }}"></td>
     </tr>
   </table>
   <button type="submit" class="btn btn-primary">送信</button>
